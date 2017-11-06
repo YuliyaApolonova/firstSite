@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	body{
+		width: 100%;
+		height: 100%;
+		  background-color: #8e44ad;
+		  margin: 0;
+		  display: flex;
+		  justify-content: center;
+		  flex-direction: column;
+	}
+		img {
+			max-width: 100%;
+			min-width: 100%;
+		}
+		#container{
+			display: flex;
+			background-color: #fff;
+            min-width: 100%;
+            min-height: 200px;
+            overflow-x: auto;
+		}
+		.content{
+		
+		  background-color: #e74c3c;
+          min-width: 200px;
+  		  margin: 5px;
+		}
+		#animated-blocks{
+
+		}
+		.animated-block{
+			height: 40px;
+			/*width: 50px;*/
+			animation-name: test-animation1;
+			animation-duration: 2s;
+			animation-fill-mode: both;
+			animation-play-state: paused;
+
+		}
+		#animated-block1{
+			background-color: red;
+		}
+		#animated-block3{
+			background-color: lightblue;
+		}
+		#animated-block4{
+			background-color: green;
+		}
+		#animated-block5{
+			background-color: pink;
+		}
+		#animated-block2{
+            background-color: blue;
+		}
+		#animated-block6{
+			background-color: yellow;
+		}
+
+/*		#container::-webkit-scrollbar {
+              display: none;
+        }*/
+
+        @keyframes test-animation1 {
+		  0% {
+		    width: 50px;
+		  }
+		  100% {
+		    width: 150px;
+		  }
+		}
+	.empty-block{
+		height: 2000px;
+		background: darkGrey;
+	}
+	</style>
+
+</head>
+<body>
+<section id='container'>
+<!-- <img src='images/tiger.jpg'> -->
+<div class='content'  id='div1'></div>
+<div class='content'  id='div2'></div>
+<div class='content'  id='div3'></div>
+<div class='content'  id='div4'></div>
+<div class='content'  id='div5'></div>
+<div class='content'  id='div6'></div>
+<div class='content'  id='div7'></div>
+<div class='content'  id='div8'></div>
+<div class='content'  id='div9'></div>
+<div class='content'  id='div10'></div>
+<div class='content'  id='div11'></div>
+<div class='content'  id='div12'></div>
+</section>
+
+<div class='empty-block'></div>
+<div class='empty-block'></div>
+<div class='empty-block'></div>
+
+<section id='animated-blocks'>
+<div class='animated-block' id='animated-block1'></div>
+<div class='animated-block' id='animated-block2'></div>
+<div class='animated-block' id='animated-block3'></div>
+<div class='animated-block' id='animated-block4'></div>
+<div class='animated-block' id='animated-block5'></div>
+<div class='animated-block' id='animated-block6'></div>
+</section>
+	<script>
+
+	 function isVisible(elem) {
+
+	    var coords = elem.getBoundingClientRect();
+
+	    var windowHeight = document.documentElement.clientHeight;
+
+	    // верхняя граница elem в пределах видимости ИЛИ нижняя граница видима
+	    var topVisible = coords.top > 0 && coords.top < windowHeight;
+	    var bottomVisible = coords.bottom < windowHeight && coords.bottom > 0;
+
+	    return topVisible || bottomVisible;
+}
+
+	var element = document.getElementById('animated-blocks');
+
+	document.addEventListener('scroll', startAnimate);
+
+	function startAnimate(){
+
+		console.log(isVisible(element)); 
+		if(isVisible(element)){
+			var blocks = document.getElementsByClassName('animated-block');
+			for(var i=0; i < blocks.length; i++){
+				blocks[i].style.animationPlayState = 'running';
+			}
+		}
+	}
+	</script>
+</body>
+</html>
